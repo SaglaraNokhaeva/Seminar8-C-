@@ -16,6 +16,7 @@ PrintArrTrans(arrayTranspon);
 int[] sortArray = SortArray(arrayTranspon);
 Console.WriteLine("Сортированный массив: ");
 PrintArrTrans(sortArray);
+Dictionary(sortArray);
 
 int[,] FillArray(int rows, int columns, int min, int max)
 {
@@ -64,24 +65,42 @@ void PrintArrTrans(int[] inputArray)
         Console.Write(" " + inputArray[i]);
     }
     Console.WriteLine();
-    };
+};
 
 int[] SortArray(int[] inputArr)
 {
-    //int[] inputArr = new int[inputArr.Length];
-    int l=0;
-for (int j = 0; j < inputArr.Length-l; j++)
-{
-    for (int i = 0; i < inputArr.Length-j-1; i++)
+    for (int j = 0; j < inputArr.Length; j++)
     {
-        if (inputArr[i]>inputArr[i+1]) 
+        for (int i = 0; i < inputArr.Length - j - 1; i++)
         {
-            int k=inputArr[i];
-            inputArr[i]=inputArr[i+1];
-            inputArr[i+1]=k;
+            if (inputArr[i] > inputArr[i + 1])
+            {
+                int k = inputArr[i];
+                inputArr[i] = inputArr[i + 1];
+                inputArr[i + 1] = k;
+            }
         }
-        l++;
     }
-}
     return inputArr;
 };
+
+void Dictionary(int[] inputArr)
+{
+    int el = inputArr[0];
+    int count = 1;
+    for (int i = 1; i < inputArr.Length; i++)
+    {
+        if (inputArr[i] != el)
+        {
+            Console.WriteLine($"{el} встречается {count}");
+            el = inputArr[i];
+            count = 1;
+        }
+        else
+        {
+            count++;
+        }
+    }
+    Console.WriteLine($"{el} встречается {count}");
+};
+
